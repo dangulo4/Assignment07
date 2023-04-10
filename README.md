@@ -9,7 +9,7 @@
 5. Declare an array called movies using literal notation. Then, assign one of your favorite movies to each index in the array until you have 7 total movies in your array. Now, use a for/in loop to iterate through the array and display each movie within the console window.
 6. Copy the code from step 5. Now, use a for/of loop to iterate through the array and display each movie within the console window.
 7. Copy the code from step 5. Using the for/of loop to iterate through the array, display each movie within the console window in a sorted view.
-8. Copy the code from step 5. Under the existing array, create a new array called `leastFavMovies`. Populate the array with the 3 movies that you regret watching. 8.Display both arrays within the console window so that it’s formatted to look like this (note the spacing, you must include that too):
+8. Copy the code from step 5. Under the existing array, create a new array called `leastFavMovies`. Populate the array with the 3 movies that you regret watching. Display both arrays within the console window so that it’s formatted to look like this (note the spacing, you must include that too):
    Movies I like:
 
 Movie 1
