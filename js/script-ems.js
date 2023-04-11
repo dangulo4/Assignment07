@@ -7,6 +7,9 @@ let employees = JSON.parse(localStorage.getItem('employees')) || [
   ['56789632', 'Holly Smith', 1920, 'holly@mail.com', 'Quality Assurance'],
   ['78000247', 'James Crook', 3216, 'james@mail.com', 'Sales'],
 ];
+// SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
+let count = employees.length;
+console.log(count);
 // CHECK TO SEE IF STORAGE OBJECT EXISTS WHEN THE PAGE LOADS
 localStorage.setItem('employees', JSON.stringify(employees));
 const displayEmployeeList = () => {
@@ -52,6 +55,7 @@ form.addEventListener('submit', (e) => {
   }
   // RESET THE FORM
   form.reset();
+  checkEmployees();
 });
 
 // DELETE EMPLOYEE
@@ -85,3 +89,16 @@ function buildGrid(employees) {
     employees = localStorage.getItem('employees') || '';
   }
 }
+
+// FUNCTION TO COUNT RECORDS WHICH WILL SHOW OR HIDE "NO ROWS" ALERT
+function checkEmployees() {
+  count == 0
+    ? document.querySelector('span').classList.add('show')
+    : document.querySelector('span').classList.remove('show');
+  empCount = document.getElementById('empCount');
+  empCount.innerHTML = `(${count})`;
+}
+
+window.addEventListener('load', (e) => {
+  checkEmployees();
+});
