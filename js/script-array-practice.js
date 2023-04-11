@@ -138,7 +138,7 @@ let showEmployees = employees.forEach((employee) => {
 });
 console.log('');
 //STEP 15
-console.log('Exercise 14.................');
+console.log('Exercise 15.................');
 let newArray = [58, '', 'abcd', true, null, false, 0];
 console.log(
   newArray
@@ -153,5 +153,20 @@ console.log(
     })
 );
 //STEP 16
-
+console.log('Exercise 16.................');
+let randomNum = Math.round(Math.random() * 10);
+let numArray = [100, 50, 80, 99, 708, 89, 65, 120, 500, -900];
+console.log(numArray);
+console.log(`Random Number: ${randomNum}`);
+console.log(`The random number picked: ${numArray[randomNum - 1]}`);
+console.log('');
 //STEP 17
+console.log('Exercise 17.................');
+biggestNum = 0;
+for (let i = 0; i < numArray.length; i++) {
+  if (numArray[i] > biggestNum) {
+    // assign new value to biggest num
+    biggestNum = numArray[i];
+  }
+}
+console.log(biggestNum);
