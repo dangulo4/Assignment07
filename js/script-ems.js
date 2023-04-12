@@ -9,7 +9,6 @@ let employees = JSON.parse(localStorage.getItem('employees')) || [
 ];
 // SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
 let count = employees.length;
-console.log(count);
 // CHECK TO SEE IF STORAGE OBJECT EXISTS WHEN THE PAGE LOADS
 localStorage.setItem('employees', JSON.stringify(employees));
 const displayEmployeeList = () => {
@@ -55,23 +54,31 @@ form.addEventListener('submit', (e) => {
   }
   // RESET THE FORM
   form.reset();
+  count = employees.length;
   checkEmployees();
 });
 
 // DELETE EMPLOYEE
-empTable.addEventListener('click', (e) => {
-  // CONFIRM THE DELETE
+function deleteEmployee(r) {
   // GET THE SELECTED ROWINDEX FOR THE TR (PARENTNODE.PARENTNODE)
-  // REMOVE EMPLOYEE FROM ARRAY
-  // BUILD THE GRID
-});
+  let tr = r.parentNode.parentNode.rowIndex;
+  // CONFIRM THE DELETE
+  if (confirm(`Are you sure you want to Employee Id: ${employees[tr - 1][0]}`)) {
+    index = document.getElementById('empTable').deleteRow(tr);
+    // REMOVE EMPLOYEE FROM ARRAY
+    console.log(employees.splice(tr - 1, 1));
+    // employees = employees.splice(tr - 1, 1);
+    localStorage.setItem('employees', JSON.stringify(employees));
+    count = employees.length;
+    // BUILD THE GRID
+    buildGrid(employees);
+    checkEmployees();
+  }
+}
 
 // BUILD THE EMPLOYEES GRID
 function buildGrid(employees) {
-  // REMOVE THE EXISTING SET OF ROWS BY REMOVING THE ENTIRE TBODY SECTION
   // LOOP THROUGH THE ARRAY OF EMPLOYEES AND BIND THE TBODY TO THE EMPLOYEE TABLE
-  // UPDATE EMPLOYEE COUNT
-  // STORE THE ARRAY IN STORAGE
   table.innerHTML = employees.map((item) => {
     // REBUILD THE TBODY FROM SCRATCH AND ROW STRUCTURE
     return `<tbody>
@@ -81,6 +88,7 @@ function buildGrid(employees) {
         <td>${item[2]}</td>
         <td>${item[3]}</td>
         <td>${item[4]}</td>
+        <td><button class='btn btn-danger btn-sm active' onclick='deleteEmployee(this)'>X</button></td>
       </tr>
     </tbody>`;
   });
@@ -96,7 +104,7 @@ function checkEmployees() {
     ? document.querySelector('span').classList.add('show')
     : document.querySelector('span').classList.remove('show');
   empCount = document.getElementById('empCount');
-  empCount.innerHTML = `(${count})`;
+  empCount.innerHTML = `(total: ${count})`;
 }
 
 window.addEventListener('load', (e) => {
